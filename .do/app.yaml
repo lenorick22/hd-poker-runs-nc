@@ -5,7 +5,7 @@ services:
 - name: web
   source_dir: /
   github:
-    repo: your-username/hd-poker-runs-nc
+    repo: johnhunt/hd-poker-runs-nc
     branch: main
   run_command: npm start
   build_command: npm run install:all && npm run build
@@ -15,19 +15,24 @@ services:
   http_port: 5000
   health_check:
     http_path: /api/health
+    initial_delay_seconds: 60
+    period_seconds: 10
+    timeout_seconds: 5
+    success_threshold: 1
+    failure_threshold: 3
   envs:
   - key: NODE_ENV
     value: "production"
   - key: PORT
     value: "5000"
   - key: JWT_SECRET
-    value: "${APP_SECRET}"
+    value: "${JWT_SECRET}"
+    type: SECRET
+  - key: MONGODB_URI
+    value: "${MONGODB_URI}"
     type: SECRET
   - key: FRONTEND_URL
-    value: "${APP_URL}"
-
-databases:
-- name: hd-poker-runs-db
-  engine: MONGODB
-  version: "6"
-  size: db-s-1vcpu-1gb
+    value: "${_self.URL}"
+  routes:
+  - path: /
+    preserve_path_prefix: false

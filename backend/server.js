@@ -5,6 +5,7 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const rateLimit = require('express-rate-limit');
+const path = require('path');
 
 // Import routes
 const eventRoutes = require('./routes/events');
