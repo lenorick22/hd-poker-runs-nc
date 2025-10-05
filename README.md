@@ -192,24 +192,53 @@ npm test
 npm test
 ```
 
-## 🚀 Deployment Options
+## 🚀 Quick Deploy
 
-### Option 1: Traditional VPS/Server
-1. Set up Node.js, MongoDB, and Nginx on your server
-2. Clone the repository
-3. Build the frontend: `cd frontend && npm run build`
-4. Start the backend: `cd backend && npm start`
-5. Configure Nginx to serve the app
+### One-Click Deployments
 
-### Option 2: Docker Deployment
-1. Install Docker and Docker Compose
-2. Set environment variables
-3. Run: `docker-compose up -d`
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/your-username/hd-poker-runs-nc)
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template?template=https://github.com/your-username/hd-poker-runs-nc)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/your-username/hd-poker-runs-nc)
 
-### Option 3: Cloud Platform (Heroku, DigitalOcean, AWS)
-- Follow platform-specific deployment guides
-- Set up MongoDB Atlas for database
-- Configure environment variables
+### Automated Deployment Script
+
+For Heroku deployment, use our automated script:
+
+```bash
+# Make sure you have Heroku CLI installed
+brew install heroku/brew/heroku
+
+# Run the deployment script
+./scripts/deploy-heroku.sh
+```
+
+### Manual Deployment Options
+
+**See [DEPLOYMENT.md](./DEPLOYMENT.md) for complete deployment guides including:**
+- Heroku (free tier available)
+- Railway (modern, fast)
+- Vercel (serverless)
+- DigitalOcean App Platform
+- Docker + VPS (full control)
+
+### Quick Setup for Development
+
+```bash
+# Clone and setup
+git clone https://github.com/your-username/hd-poker-runs-nc.git
+cd hd-poker-runs-nc
+npm run install:all
+
+# Copy environment template
+cp .env.example backend/.env
+# Edit backend/.env with your values
+
+# Start MongoDB (macOS with Homebrew)
+brew services start mongodb-community
+
+# Run the application
+npm run dev
+```
 
 ## 🔧 Environment Variables
 

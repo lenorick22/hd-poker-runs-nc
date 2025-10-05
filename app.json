@@ -1,0 +1,42 @@
+{
+  "name": "HD Poker Runs NC",
+  "description": "A full-stack web application for managing Harley Davidson poker runs in North Carolina",
+  "repository": "https://github.com/your-username/hd-poker-runs-nc",
+  "logo": "https://your-logo-url.com/logo.png",
+  "keywords": ["nodejs", "react", "mongodb", "poker-run", "harley-davidson"],
+  "image": "heroku/nodejs",
+  "stack": "heroku-20",
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "hobby"
+    }
+  },
+  "addons": [
+    {
+      "plan": "mongodb-atlas:M0"
+    }
+  ],
+  "env": {
+    "NODE_ENV": {
+      "description": "Node environment",
+      "value": "production"
+    },
+    "JWT_SECRET": {
+      "description": "JWT secret key for authentication",
+      "generator": "secret"
+    },
+    "FRONTEND_URL": {
+      "description": "Frontend URL (will be set automatically by Heroku)",
+      "value": "https://your-app-name.herokuapp.com"
+    }
+  },
+  "scripts": {
+    "postdeploy": "echo 'Deployment completed successfully!'"
+  }
+}

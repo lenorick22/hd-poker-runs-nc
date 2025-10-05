@@ -1,0 +1,33 @@
+name: hd-poker-runs-nc
+region: nyc1
+
+services:
+- name: web
+  source_dir: /
+  github:
+    repo: your-username/hd-poker-runs-nc
+    branch: main
+  run_command: npm start
+  build_command: npm run install:all && npm run build
+  environment_slug: node-js
+  instance_count: 1
+  instance_size_slug: basic-xxs
+  http_port: 5000
+  health_check:
+    http_path: /api/health
+  envs:
+  - key: NODE_ENV
+    value: "production"
+  - key: PORT
+    value: "5000"
+  - key: JWT_SECRET
+    value: "${APP_SECRET}"
+    type: SECRET
+  - key: FRONTEND_URL
+    value: "${APP_URL}"
+
+databases:
+- name: hd-poker-runs-db
+  engine: MONGODB
+  version: "6"
+  size: db-s-1vcpu-1gb
