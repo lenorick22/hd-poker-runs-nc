@@ -1,0 +1,81 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=production
+      - PORT=5000
+      - MONGODB_URI=mongodb://mongo:27017/hd-poker-runs
+      - JWT_SECRET=${JWT_SECRET:-your-secret-key-here}
+      - FRONTEND_URL=http://localhost:5000
+    depends_on:
+      - mongo
+    volumes:
+      - app_logs:/app/logs
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  mongo:
+    image: mongo:6.0
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_DATABASE=hd-poker-runs
+    volumes:
+      - mongo_data:/data/db
+      - ./database/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./deployment/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./deployment/ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - app
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  # Development services
+  app-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "5000:5000"
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=5000
+      - MONGODB_URI=mongodb://mongo:27017/hd-poker-runs-dev
+      - JWT_SECRET=dev-secret-key
+    depends_on:
+      - mongo
+    volumes:
+      - ./backend:/app/backend
+      - ./frontend:/app/frontend
+      - /app/backend/node_modules
+      - /app/frontend/node_modules
+    command: npm run dev
+    networks:
+      - app-network
+    profiles:
+      - dev
+
+volumes:
+  mongo_data:
+  app_logs:
+
+networks:
+  app-network:
+    driver: bridge
