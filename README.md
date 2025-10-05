@@ -196,9 +196,9 @@ npm test
 
 ### One-Click Deployments
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/your-username/hd-poker-runs-nc)
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template?template=https://github.com/your-username/hd-poker-runs-nc)
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/your-username/hd-poker-runs-nc)
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/lenorick22/hd-poker-runs-nc)
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template?template=https://github.com/lenorick22/hd-poker-runs-nc)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/lenorick22/hd-poker-runs-nc)
 
 ### Automated Deployment Script
 
@@ -225,7 +225,7 @@ brew install heroku/brew/heroku
 
 ```bash
 # Clone and setup
-git clone https://github.com/your-username/hd-poker-runs-nc.git
+git clone https://github.com/lenorick22/hd-poker-runs-nc.git
 cd hd-poker-runs-nc
 npm run install:all
 

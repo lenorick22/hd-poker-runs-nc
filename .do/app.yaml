@@ -5,7 +5,7 @@ services:
 - name: web
   source_dir: /
   github:
-    repo: johnhunt/hd-poker-runs-nc
+    repo: lenorick22/hd-poker-runs-nc
     branch: main
   run_command: npm start
   build_command: npm run install:all && npm run build
